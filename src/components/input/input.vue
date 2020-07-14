@@ -1,5 +1,5 @@
 <template>
-    <input type="text" value="Sudo"/>
+    <input type="text" value="Sudo" class="input"/>
 </template>
 <script>
 export default {
