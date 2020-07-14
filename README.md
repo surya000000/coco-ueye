@@ -20,3 +20,5 @@ yarn install cocoui --save
 
 ### Development
 please check package.json for running development
+running linter
+yarn run lint

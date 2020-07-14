@@ -3,6 +3,6 @@
 </template>
 <script>
 export default {
-    name: 'Input'
-}
+    name: "Input"
+};
 </script>
