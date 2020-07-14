@@ -1,0 +1,22 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": [
+        "plugin:vue/essential",
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"]
+    },
+    "extends": "eslint:recommended"
+}
