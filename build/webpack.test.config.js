@@ -1,9 +1,10 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config.js');
 
 
 const webpackConfig = merge(webpackBaseConfig, {
+    mode: 'none',
     devtool: 'eval-source-map',
     plugins: [
         new webpack.DefinePlugin({

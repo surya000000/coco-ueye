@@ -14,7 +14,7 @@ if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
-// const cocouiVersion = { version: process.env.VERSION };
+const cocouiVersion = { version: process.env.VERSION };
 
 export {
     Input

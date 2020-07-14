@@ -18,6 +18,7 @@
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "chai": "^4.2.0",
     "css-loader": "^3.6.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
@@ -28,8 +29,14 @@
     "html-webpack-plugin": "^4.3.0",
     "karma": "^5.1.0",
     "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.2",
+    "karma-mocha": "^2.0.1",
+    "karma-sinon-chai": "^2.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^4.0.2",
     "mocha": "^8.0.1",
+    "sinon": "^9.0.2",
     "sinon-chai": "^3.5.0",
     "vue-loader": "^15.9.3",
     "vue-style-loader": "^4.1.2",
@@ -43,7 +50,7 @@
     "lint": "eslint --fix --ext .js,.vue src",
     "start": "yarn run dev",
     "dev": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 8081 --config build/webpack.dev.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn run lint && karma start test/unit/karma.conf.js --single-run"
   },
   "author": "Surya Prasad Siwakoti",
   "license": "ISC"

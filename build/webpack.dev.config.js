@@ -10,6 +10,7 @@ function resolve (dir) {
 }
 
 module.exports = merge(webpackBaseConfig, {
+    mode: 'development',
     devtool: 'eval-source-map',
     entry: {
         main: resolve('dev-demo/app.js'),
