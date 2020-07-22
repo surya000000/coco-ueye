@@ -1,8 +1,13 @@
 <template>
-    <input type="text" value="Sudo" class="input"/>
+    <input type="text" value="Sudo" class="input" :name="name" />
 </template>
 <script>
 export default {
-    name: "Input"
+    name: "Input",
+    data() {
+        return {
+            name: "Asd"
+        }
+    }
 };
 </script>

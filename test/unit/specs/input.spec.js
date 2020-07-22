@@ -1,19 +1,14 @@
 import { expect } from 'chai';
+import Vue from 'vue';
+const cocoui =  require('../../../src/index');
 
-class Person {
-    say() {
-        return 'hello';
-    }
-}
+Vue.use(cocoui);
+
 describe('Input', () => {
     it('Vue', () => {
-        // expect(test()).to.equal(true);
+        // constructor (Ctor is convention of naming constructor)
+        const Ctor = Vue.extend({ template: `<Input />` });
+        const vm = new Ctor().$mount();
+        expect(vm.$el.value).contain('')
  });
-});
-
-describe('Calculator', function() {
-
-	it('should add numbers');
-    const p = new Person()
-    expect(p.say()).to.equal('hello')
 });
