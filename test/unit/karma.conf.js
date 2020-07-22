@@ -6,6 +6,15 @@ module.exports = function(config) {
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
     files: ['./index.js'],
+    plugins: [
+        require('karma-webpack'),
+        require('karma-sourcemap-loader'),
+        require('karma-mocha'),
+        require('karma-sinon-chai'),
+        require('karma-spec-reporter'),
+        require('karma-coverage'),
+        require('karma-chrome-launcher')
+    ],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },

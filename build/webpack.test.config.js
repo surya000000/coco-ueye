@@ -1,17 +1,18 @@
-const webpack = require('webpack');
+const path = require('path');
 const { merge } = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config.js');
 
+function resolve (dir) {
+    return path.join(__dirname, '..', dir);
+}
 
-const webpackConfig = merge(webpackBaseConfig, {
-    mode: 'none',
-    devtool: 'eval-source-map',
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"test"'
-            }
-        })
-    ]
+module.exports = merge(webpackBaseConfig, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  output: {
+    path: resolve('dev-demo/dist'),
+    publicPath: '',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js'
+  },
 });
-module.exports = webpackConfig;

@@ -24,21 +24,6 @@ module.exports = {
                                 },
                             },
                         ],
-                        less: [
-                            'vue-style-loader',
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    sourceMap: true,
-                                },
-                            },
-                            {
-                                loader: 'less-loader',
-                                options: {
-                                    sourceMap: true,
-                                },
-                            },
-                        ],
                     },
                     postLoaders: {
                         html: 'babel-loader?sourceMap'
@@ -69,7 +54,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue': 'vue/dist/vue.esm.js',
             '@': resolve('src')
