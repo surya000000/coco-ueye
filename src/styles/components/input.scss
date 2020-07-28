@@ -1,9 +1,7 @@
-.input {
-    width: 100%;
-    height: 200%;
-    color: black;
-};
-div {
-    height: 299;
-    width: 233;
+@import '@/styles/variables';
+
+.coco-ui-grid {
+    background: $light-gray;
+    display: grid;
+    grid-auto-flow: column;
 };

@@ -1,13 +1,9 @@
 <template>
-    <input type="text" value="Sudo" class="input" :name="name" />
+    <input type="text" value="Full Calendar" class="input" />
 </template>
 <script>
+
 export default {
     name: "Input",
-    data() {
-        return {
-            name: "Asd"
-        };
-    }
 };
 </script>

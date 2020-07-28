@@ -19,6 +19,7 @@ if (typeof window !== "undefined" && window.Vue) {
 const cocouiVersion = { version: process.env.VERSION };
 
 export {
+    install,
     Input,
     FullCalendar,
 };

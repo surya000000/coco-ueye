@@ -4,7 +4,9 @@ const { merge } = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.base.config.js');
 
 process.env.NODE_ENV = 'production';
-
+function resolve (dir) {
+    return path.join(__dirname, '..', dir);
+}
 module.exports = merge(webpackBaseConfig, {
     mode: 'production',
     devtool: 'source-map',

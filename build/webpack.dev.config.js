@@ -25,6 +25,7 @@ module.exports = merge(webpackBaseConfig, {
     resolve: {
         alias: {
             cocoui: resolve('src/index.js'),
+            cocouiHelpers: resolve('src/util/index.js'),
             vue: 'vue/dist/vue.esm.js'
         }
     },

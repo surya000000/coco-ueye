@@ -40,7 +40,8 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
+            '@': resolve('src'),
+            cocouiHelpers: resolve('src/util/index.js'),
         }
     },
     plugins: [
