@@ -7,7 +7,7 @@ export default {
     data() {
         return {
             name: "Asd"
-        }
+        };
     }
 };
 </script>

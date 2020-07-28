@@ -12,24 +12,7 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    loaders: {
-                        css: [
-                            'vue-style-loader',
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    sourceMap: true,
-                                },
-                            },
-                        ],
-                    },
-                    postLoaders: {
-                        html: 'babel-loader?sourceMap'
-                    },
-                    sourceMap: true,
-                }
+                loader: 'vue-loader'
             },
             {
                 test: /\.js$/,
@@ -48,7 +31,7 @@ module.exports = {
                 loader: 'url-loader?limit=8192'
             },
             {
-                test: /\.(html|tpl)$/,
+                test: /\.html$/,
                 loader: 'html-loader'
             }
         ]

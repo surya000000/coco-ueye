@@ -1,3 +1,3 @@
-import Input from "./input.vue";
+import Input from "./src/index";
 
 export default Input;
