@@ -41,7 +41,8 @@ module.exports = {
         alias: {
             'vue': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
-            cocouiHelpers: resolve('src/util/index.js'),
+            'ui-helpers': resolve('src/util/index.js'),
+            'test-helpers': resolve('test/util/index.js'),
         }
     },
     plugins: [

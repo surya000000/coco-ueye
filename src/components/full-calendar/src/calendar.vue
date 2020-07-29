@@ -111,21 +111,3 @@ export default {
     }
 };
 </script>
-<style scoped lang="scss">
-.full-calendar {
-    display: grid;
-    grid-template-columns: 200px auto;
-}
-p {
-    text-align: center;
-}
-.full-calendar-day-number {
-    border: 1px solid #ddd;
-    min-width: 30px;
-}
-.event {
-    height: 20px;
-    background: white;
-};
-
-</style>
