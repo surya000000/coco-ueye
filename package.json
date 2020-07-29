@@ -11,6 +11,11 @@
     "yarn": ">=1.22.4"
   },
   "dependencies": {
+    "@storybook/storybook-deployer": "^2.8.6",
+    "@storybook/vue": "^5.3.19",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-vue": "^2.0.2",
+    "mini-css-extract-plugin": "^0.9.0",
     "vue": "^2.5.2"
   },
   "devDependencies": {
@@ -50,10 +55,14 @@
     "webpack-merge": "^5.0.9"
   },
   "scripts": {
+    "deploy:storybook": "storybook-to-ghpages",
     "lint": "eslint --fix --ext .js,.vue src",
     "start": "yarn run dev",
     "dev": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 8081 --config build/webpack.dev.config.js",
-    "test": "yarn run lint && karma start test/unit/karma.conf.js --single-run"
+    "test": "yarn run lint && karma start test/unit/karma.conf.js --single-run",
+    "build:prod": "webpack --config build/webpack.prod.config.js",
+    "storybook": "start-storybook",
+    "build:storybook": "build-storybook -c .storybook -o .out"
   },
   "author": "Surya Prasad Siwakoti",
   "license": "ISC"
