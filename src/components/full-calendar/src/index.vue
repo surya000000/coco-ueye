@@ -1,19 +1,22 @@
 <template>
     <div>
-        <Card
-            v-for="(item, i) in lists"
-            :key="item.value"
-            :image-url="item.imageURL"
-            :label="item.label"
-            :desc="item.desc"
-        >
-            <Calendar
-                @on-header-click="headerClick"
-                @on-column-click="columnClick"
-                :date-events="item.dateEvents"
-                :show-header="i === 0"
-            />
-        </Card>
+        <div v-for="(item, i) in lists" :key="item.value" >
+            <div v-if="i === 0">
+                <p>June 2020</p>
+            </div>
+            <Card
+                :image-url="item.imageURL"
+                :label="item.label"
+                :desc="item.desc"
+            >
+                <Calendar
+                    @on-header-click="headerClick"
+                    @on-column-click="(param, e) => columnClick({...param, id: item.value }, e)"
+                    :date-events="item.dateEvents"
+                    :show-header="i === 0"
+                />
+            </Card>
+        </div>
     </div>
 </template>
 <script>
@@ -116,14 +119,14 @@ export default {
         Card,
     },
     methods: {
-        columnClick({ index, dayNumber }, e) {
-            if (!e.target.className.match(/full-calendar-day-number/)) {
+        columnClick({ index, dayNumber, id }, e) {
+            if (!e.target.className.match(/full-calendar-day-number|event/)) {
                 return false;
             }
-            alert("Column clicked day: " + dayNumber + 'clicked' +index);
+            alert("Column clicked day: " + dayNumber + ' clicked column index' +index +" Fos id "+ id);
         },
         headerClick(dayNumber) {
-            alert("Column Header clicked day: " + dayNumber + 'clicked');
+            alert("Column Header clicked day: " + dayNumber);
             document.querySelectorAll(".full-calendar-day-number").forEach(el => {
                 el.classList.remove('active');
             });
