@@ -29,12 +29,9 @@ module.exports = merge(webpackBaseConfig, {
             amd: 'vue'
         }
     },
-    plugins: [
-        // @todo
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        })
-    ]
+    resolve: {
+        alias: {
+            'ui-helpers': resolve('src/util/index.js'),
+        }
+    },
 });

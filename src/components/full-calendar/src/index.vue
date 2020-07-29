@@ -1,115 +1,136 @@
 <template>
-    <div class="coco-ui-grid">
-        <div
-            v-for="dayNumber in totalDays"
-            class="full-calendar-day-number"
+    <div>
+        <Card
+            v-for="(item, i) in lists"
+            :key="item.value"
+            :image-url="item.imageURL"
+            :label="item.label"
+            :desc="item.desc"
         >
-            <p>
-                {{ dayNumber }}
-            </p>
-            <p>
-                {{ getDayName(dayNumber) }}
-            </p>
-            <div
-                class="event"
-                v-for="event in getDateEvents(dayNumber)"
-                :style="Object.assign(defaultStyles, event.styles || {})"
-            >
-            </div>
-        </div>
+            <Calendar
+                @on-header-click="headerClick"
+                @on-column-click="columnClick"
+                :date-events="item.dateEvents"
+                :show-header="i === 0"
+            />
+        </Card>
     </div>
 </template>
 <script>
-import { isJSON, flatMap } from "cocouiHelpers";
+import Calendar from './calendar';
+import Card from '@/components/card';
 
-const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-const dateEventsInterface = {
-    data: { from: new Date(), to: new Date() },
-    events: [],
-};
-
-const eventInterface = {
-    eventGroup: "",
-    styles: {
-        height: "12px",
-        borderRadius: "10px"
+const items = [
+    {
+            label: "Sudhir",
+            value: 220,
+            dateEvents: [
+            {
+                date: { from: "2020/07/21", to: "2020/07/25" },
+                events: [{
+                    name: "s",
+                    label: "20%",
+                    styles: {
+                        color: "blue",
+                    }
+                }],
+            }]
     },
-};
-
-const dateEvents = [{
-    date: { from: "2020/07/28", to: "2020/07/30" },
-    events: [{
-        groupName: "Tasks",
-        styles: {
-            backgroundColor: "#23a9f6",
-        }
+    {
+        imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
+        label: "Sudhir Sapkota",
+        value: 20,
+        desc: "<li><ul>15 task pending</ul><ul>25 task Remaining</ul></li>",
+        dateEvents: [
+            {
+            date: { from: "2020/07/11", to: "2020/07/14" },
+            events: [{
+                name: "Tasks",
+                styles: {
+                    backgroundColor: "red",
+                    marginLeft: "-1px",
+                    marginRight: "-1px"
+                }
+            },
+            {
+                name: "Sales",
+                styles: {
+                    backgroundColor: "green",
+                    marginLeft: "-1px",
+                    marginRight: "-1px"
+                }
+            }]
+        },
+        {
+        date: { from: "2020/07/14", to: "2020/07/16" },
+        events: [
+        {
+            name: "Tasks",
+            styles: {
+                backgroundColor: "red",
+                marginLeft: "-1px",
+                marginRight: "-1px"
+            }
+        }]
     }]
-}];
+},
+{
+        imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
+        label: "Sudhir Sapkota",
+        value: 10,
+        desc: "<li><ul>15 task pending</ul><ul>25 task Remaining</ul></li>",
+        dateEvents: [{
+            date: { from: "2020/07/3", to: "2020/07/10" },
+            events: [{
+                groupName: "Tasks",
+                    styles: {
+                        backgroundColor: "blue",
+                        marginLeft: "-1px",
+                        marginRight: "-1px"
+                    }
+                }],
+            },
+            {
+            date: { from: "2020/07/12", to: "2020/07/18" },
+            events: [{
+                groupName: "Tasks",
+                styles: {
+                    backgroundColor: "red",
+                    marginLeft: "-1px",
+                    marginRight: "-1px"
+                }
+            }]
+        }]
+}]
+
 
 export default {
-    name: "FullCalendar",
     props: {
-        year: {
-            type: [String, Number],
-            default: new Date().getFullYear(),
-        },
-        month: {
-            type: [String, Number],
-            default: new Date().getMonth(),
-        },
-        dateEvents: {
+        lists: {
             type: Array,
-            default: () => dateEvents,
-        }
+            default: () => items,
+        },
     },
-    computed: {
-        defaultStyles() {
-            return eventInterface.styles;
-        },
-        eventGroupNames() {
-            return flatMap(this.dateEvents, "events.groupName");
-        },
-        totalDays() {
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth
-            // geMonth returns from 0 index
-            return new Date(this.year, this.month + 1, 0).getDate();
-        },
+    components: {
+        Calendar,
+        Card,
     },
     methods: {
-        getDateEvents(dayNumber) {
-            const currentDate = new Date(this.year, this.month, dayNumber);
-            const currentDateEvents = this.dateEvents.find(data => {
-                let fromDate = new Date();
-                let toDate = new Date();
-                if (isJSON(data.date)) {
-                    fromDate = new Date(data.date.from);
-                    toDate = new Date(data.date.to);
-                }
-                return currentDate >= fromDate && currentDate <= toDate;
-            }) || dateEventsInterface;
-
-            return currentDateEvents.events;
+        columnClick({ index, dayNumber }, e) {
+            if (!e.target.className.match(/full-calendar-day-number/)) {
+                return false;
+            }
+            alert("Column clicked day: " + dayNumber + 'clicked' +index);
         },
-        getDayName(dayNumber) {
-            const dayIndex = new Date(this.year, this.month, dayNumber).getDay();
-            return weekday[dayIndex];
+        headerClick(dayNumber) {
+            alert("Column Header clicked day: " + dayNumber + 'clicked');
+            document.querySelectorAll(".full-calendar-day-number").forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll(`.day-${dayNumber}`).forEach(el => {
+                el.classList.add('active');
+            });
         }
     }
-};
+}
 </script>
-<style scoped lang="scss">
-@import '@/styles/variables';
-
-p {
-    text-align: center;
-}
-.full-calendar-day-number {
-    border: 1px solid #ddd;
-    height: 200px;
-}
-.event {
-    height: 100px;
-    background: white;
-}
-</style>

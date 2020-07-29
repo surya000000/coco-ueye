@@ -1,15 +1,13 @@
 <template>
     <div class="container">
-        <Input />
         <FullCalendar />
     </div>
 </template>
 <script>
-import { Input, FullCalendar } from 'cocoui';
+import { FullCalendar } from 'cocoui';
 
 export default {
     components: {
-        Input,
         FullCalendar,
     }
 }

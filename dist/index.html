@@ -5,13 +5,11 @@
     <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
     <script src="./cocoui.min.js"></script>
 </head>
-<body>
-    <div id="app">
-        <Input />
-        <FullCalendar />
-    </div>
-</body>
-<script>
-    new Vue({ el: '#app' })
-</script>
+    <body>
+        <div id="app">
+        </div>
+    </body>
+    <script type="text/javascript">
+        new Vue({ el: '#app', render: h => h(cocoui.FullCalendar) });
+    </script>
 </html>

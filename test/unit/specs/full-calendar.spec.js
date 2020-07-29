@@ -1,12 +1,9 @@
 import { expect } from 'chai';
-import Vue from 'vue';
-const cocoui = require('../../../src/index');
-
+import { mount } from 'test-helpers';
+import { FullCalendar } from 'cocoui';
 
 describe('Full Calendar', () => {
     it('Vue', () => {
-        // constructor (Ctor is convention of naming constructor)
-        const Ctor = Vue.extend({ template: `<FullCalendar />` });
-        const vm = new Ctor().$mount();
- });
+        const vm = mount(cocoui.FullCalendar);
+    });
 });

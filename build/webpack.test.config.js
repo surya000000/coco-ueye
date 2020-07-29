@@ -15,4 +15,12 @@ module.exports = merge(webpackBaseConfig, {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js'
   },
+  resolve: {
+      alias: {
+          cocoui: resolve('src/index.js'),
+          vue: 'vue/dist/vue.esm.js',
+          'ui-helpers': resolve('src/util/index.js'),
+          'test-helpers': resolve('test/util/index.js'),
+      }
+  },
 });

@@ -1,1 +1,15 @@
 @import "./components/input.scss";
+img {
+    height: 60px;
+    width: 63px;
+    border-radius: 32px;
+}
+
+.card-calendar-grid {
+    display: grid;
+    grid-template-columns: 100px 20px auto;
+}
+
+.active {
+    background: yellow;
+}
