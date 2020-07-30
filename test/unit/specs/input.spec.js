@@ -1,14 +1,18 @@
 import { expect } from 'chai';
 import Vue from 'vue';
+import { mount } from '../../../test/util';
+
 const cocoui =  require('../../../src/index');
 
-Vue.use(cocoui);
+
+Object.keys(cocoui).forEach(s => {
+    Vue.component(s, cocoui[s]);
+})
+
 
 describe('Input', () => {
     it('Vue', () => {
-        // constructor (Ctor is convention of naming constructor)
-        const Ctor = Vue.extend({ template: `<Input />` });
-        const vm = new Ctor().$mount();
-        expect(vm.$el.value).contain('')
- });
+        const vm = mount({ template: '<Input />' });
+        expect(vm.$el.value).contain('Full Calendar');
+    });
 });

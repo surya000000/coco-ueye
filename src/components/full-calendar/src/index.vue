@@ -17,8 +17,8 @@
     </div>
 </template>
 <script>
-import Calendar from './calendar';
-import Card from '@/components/card';
+import Calendar from "./calendar";
+import Card from "@/components/card";
 
 const items = [
     {
@@ -102,7 +102,7 @@ const items = [
                 }
             }]
         }]
-}]
+}];
 
 
 export default {
@@ -121,17 +121,17 @@ export default {
             if (!e.target.className.match(/full-calendar-day-number|event/)) {
                 return false;
             }
-            alert("Column clicked day: " + dayNumber + ' clicked column index' +index +" Fos id "+ id);
+            alert("Column clicked day: " + dayNumber + " clicked column index" +index +" Fos id "+ id);
         },
         headerClick(dayNumber) {
             alert("Column Header clicked day: " + dayNumber);
             document.querySelectorAll(".full-calendar-day-number").forEach(el => {
-                el.classList.remove('active');
+                el.classList.remove("active");
             });
             document.querySelectorAll(`.day-${dayNumber}`).forEach(el => {
-                el.classList.add('active');
+                el.classList.add("active");
             });
         }
     }
-}
+};
 </script>

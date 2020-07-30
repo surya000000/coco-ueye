@@ -1,6 +1,7 @@
 import Vue from 'vue';
+
 const mount = (component, data) => {
-    return component;
+    return new Vue(component).$mount(null);
 };
 
 export default mount;

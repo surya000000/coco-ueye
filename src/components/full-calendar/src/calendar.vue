@@ -54,7 +54,7 @@ export default {
     data() {
         return {
             activeDayNumber: null
-        }
+        };
     },
     props: {
         year: {
@@ -90,7 +90,7 @@ export default {
     methods: {
         onheaderClick(dayNumber, e) {
             this.activeDayNumber = dayNumber;
-            this.$emit('on-header-click', this.activeDayNumber);
+            this.$emit("on-header-click", this.activeDayNumber);
         },
         getDateEvents(dayNumber) {
             const currentDate = new Date(this.year, this.month, dayNumber);
