@@ -1,24 +1,29 @@
 <template>
     <div>
-        <p>June 2020</p>
-        <Card
-            v-for="(item, i) in lists" :key="item.value"
-            :image-url="item.imageURL"
-            :label="item.label"
-            :desc="item.desc"
-        >
+        <p>{{ months[month]  }} {{ year }}</p>
+        <div v-for="(item, i) in lists" :key="item.value" class="card-date-grid">
+            <Card
+                :image-url="item.imageURL"
+                :label="item.label"
+                :desc="item.desc"
+            >
+            </Card>
             <Calendar
                 @on-header-click="headerClick"
                 @on-column-click="(param, e) => columnClick({...param, id: item.value }, e)"
                 :date-events="item.dateEvents"
                 :show-header="i === 0"
+                :year="year"
+                :month="month"
             />
-        </Card>
+        </div>
     </div>
 </template>
 <script>
 import Calendar from "./calendar";
 import Card from "@/components/card";
+import months from '@/components/interface/months';
+
 
 const items = [
     {
@@ -40,7 +45,7 @@ const items = [
         imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
         label: "Sudhir Sapkota",
         value: 20,
-        desc: "<li><ul>15 task pending</ul><ul>25 task Remaining</ul></li>",
+        desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
         dateEvents: [
             {
             date: { from: "2020/07/11", to: "2020/07/14" },
@@ -79,7 +84,7 @@ const items = [
         imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
         label: "Sudhir Sapkota",
         value: 10,
-        desc: "<li><ul>15 task pending</ul><ul>25 task Remaining</ul></li>",
+        desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
         dateEvents: [{
             date: { from: "2020/07/3", to: "2020/07/10" },
             events: [{
@@ -111,10 +116,21 @@ export default {
             type: Array,
             default: () => items,
         },
+        year: {
+            type: [String, Number],
+            default: new Date().getFullYear(),
+        },
+        month: {
+            type: [String, Number],
+            default: new Date().getMonth(),
+        },
     },
     components: {
         Calendar,
         Card,
+    },
+    computed: {
+        months: () => months,
     },
     methods: {
         columnClick({ index, dayNumber, id }, e) {

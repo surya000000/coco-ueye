@@ -35,3 +35,15 @@ p {
     top: -16px;
     margin-left: 20px;
 }
+.card-grid {
+    display: grid;
+    grid-template-columns: auto auto
+};
+.card {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.card-date-grid {
+    display: grid;
+    grid-template-columns: 16% auto;
+}

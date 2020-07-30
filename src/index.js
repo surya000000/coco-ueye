@@ -1,9 +1,11 @@
 import Input from "./components/input";
 import FullCalendar from "./components/full-calendar";
+import Card from "./components/card";
 
 const components = [
     Input,
     FullCalendar,
+    Card,
 ];
 
 const install = function(Vue) {
@@ -20,5 +22,6 @@ const cocouiVersion = { version: process.env.VERSION };
 
 export {
     Input,
+    Card,
     FullCalendar,
 };

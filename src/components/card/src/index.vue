@@ -1,11 +1,10 @@
 <template>
-    <div class="card-calendar-grid">
-        <div>
-            <img v-if="imageUrl" :src="imageUrl" />
-            {{ label }}
+    <div>
+        <div class="card-grid">
+            <img  :src="imageUrl" />
+            <div>{{ label }}</div>
         </div>
         <div v-html="desc" />
-        <slot />
     </div>
 </template>
 <script>
