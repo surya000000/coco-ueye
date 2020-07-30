@@ -22,9 +22,16 @@ p {
 }
 .full-calendar-day-number {
     border: 1px solid #ddd;
-    min-width: 30px;
+    max-width: 50px;
+    min-width: 50px;
 }
 .event {
     height: 20px;
     background: white;
+    margin-top: 10px;
 };
+.event-icon {
+    position: relative;
+    top: -16px;
+    margin-left: 20px;
+}

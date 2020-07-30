@@ -1,22 +1,19 @@
 <template>
     <div>
-        <div v-for="(item, i) in lists" :key="item.value" >
-            <div v-if="i === 0">
-                <p>June 2020</p>
-            </div>
-            <Card
-                :image-url="item.imageURL"
-                :label="item.label"
-                :desc="item.desc"
-            >
-                <Calendar
-                    @on-header-click="headerClick"
-                    @on-column-click="(param, e) => columnClick({...param, id: item.value }, e)"
-                    :date-events="item.dateEvents"
-                    :show-header="i === 0"
-                />
-            </Card>
-        </div>
+        <p>June 2020</p>
+        <Card
+            v-for="(item, i) in lists" :key="item.value"
+            :image-url="item.imageURL"
+            :label="item.label"
+            :desc="item.desc"
+        >
+            <Calendar
+                @on-header-click="headerClick"
+                @on-column-click="(param, e) => columnClick({...param, id: item.value }, e)"
+                :date-events="item.dateEvents"
+                :show-header="i === 0"
+            />
+        </Card>
     </div>
 </template>
 <script>
@@ -49,6 +46,7 @@ const items = [
             date: { from: "2020/07/11", to: "2020/07/14" },
             events: [{
                 name: "Tasks",
+                icon: "⭐",
                 styles: {
                     backgroundColor: "red",
                     marginLeft: "-1px",

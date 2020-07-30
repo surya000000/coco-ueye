@@ -25,6 +25,9 @@
                 :style="event.styles"
             >
                 {{ event.label }}
+                <span class="event-icon">
+                    {{ event.icon }}
+                </span>
             </div>
         </div>
     </div>
