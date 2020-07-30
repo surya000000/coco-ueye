@@ -1,7 +1,10 @@
 
 # cocoui
 CCOUI
-UI components for vue js application
+UI components for vue js application.
+
+# contributors
+Lets get started.
 
 ### Installation
 
@@ -31,4 +34,4 @@ https://edspencer.me.uk/posts/2019-06-20-should-you-use-webpack-for-building-scs
 
 
 # storybook of Components
-https://surya000000.github.io/cocou
+https://surya000000.github.io/cocoui
