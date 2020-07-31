@@ -6,6 +6,7 @@
                 :image-url="item.imageURL"
                 :label="item.label"
                 :desc="item.desc"
+                width="inherit"
             >
             </Card>
             <Calendar
@@ -48,7 +49,7 @@ const items = [
         desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
         dateEvents: [
             {
-            date: { from: "2020/07/11", to: "2020/07/14" },
+            date: { from: "2020/07/11", to: "2020/07/13" },
             events: [{
                 name: "Tasks",
                 icon: "⭐",

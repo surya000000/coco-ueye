@@ -1,7 +1,10 @@
 @import '@/styles/variables';
 
 .coco-ui-grid {
-    background: $light-gray;
     display: grid;
     grid-auto-flow: column;
 };
+
+.with-header {
+    background: rgb(249, 249, 251);
+}

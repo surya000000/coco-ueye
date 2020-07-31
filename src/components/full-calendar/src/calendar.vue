@@ -1,5 +1,5 @@
 <template>
-    <div class="coco-ui-grid">
+    <div :class="['coco-ui-grid', showHeader ? 'with-header' : '']">
         <div
             @click="e => $emit('on-column-click', { dayNumber, index }, e)"
             v-for="(dayNumber, index) in totalDays"

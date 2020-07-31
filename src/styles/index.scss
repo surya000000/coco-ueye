@@ -1,4 +1,6 @@
 @import "./components/input.scss";
+@import "./components/card.scss";
+
 img {
     height: 60px;
     width: 63px;
@@ -29,20 +31,18 @@ p {
     height: 20px;
     background: white;
     margin-top: 10px;
+    border-radius: 20px;
 };
 .event-icon {
     position: relative;
     top: -16px;
     margin-left: 20px;
 }
-.card-grid {
+.card-header {
     display: grid;
     grid-template-columns: auto auto
 };
-.card {
-    display: grid;
-    grid-template-columns: auto auto;
-}
+
 .card-date-grid {
     display: grid;
     grid-template-columns: 16% auto;

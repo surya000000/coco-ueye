@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <FullCalendar />
-        <!-- <Card
+        <Card
             v-for="(item, i) in lists()" :key="item.value"
             :image-url="item.imageURL"
             :label="item.label"
             :desc="item.desc"
-        /> -->
+        />
     </div>
 </template>
 <script>

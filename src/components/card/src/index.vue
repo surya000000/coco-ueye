@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <div class="card-grid">
-            <img  :src="imageUrl" />
-            <div>{{ label }}</div>
+    <div class="card" :style="{ width }">
+        <div class="card-header">
+            <img :src="imageUrl" />
+            <a href="#">{{ label }}</a>
         </div>
         <div v-html="desc" />
     </div>
@@ -11,6 +11,10 @@
 
 export default {
     props: {
+        width: {
+            type: String,
+            required: true,
+        },
         imageUrl: {
             type: String,
             requird: true,
