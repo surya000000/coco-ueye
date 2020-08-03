@@ -20,7 +20,8 @@
             </div>
             <div
                 class="event"
-                v-for="event in getDateEvents(dayNumber)"
+                :class="getBorderRadius(getDateEvents(dayNumber).date, dayNumber)"
+                v-for="event in getDateEvents(dayNumber).events"
                 :key="event.label"
                 :style="event.styles"
             >
@@ -53,7 +54,7 @@ export default {
     name: "Calendar",
     data() {
         return {
-            activeDayNumber: null
+            activeDayNumber: null,
         };
     },
     props: {
@@ -102,15 +103,30 @@ export default {
                     toDate = new Date(data.date.to);
                     return currentDate >= fromDate && currentDate <= toDate;
                 }
-                return new Date(data.date) === currentDate;
+                return new Date(data.date).toLocaleString() === currentDate.toLocaleString();
 
             }) || dateEventsInterface;
-            return currentDateEvents.events;
+            return currentDateEvents;
+        },
+        getBorderRadius(date, dayNumber) {
+            if (!date.from) return "border-rounded-left-right";
+
+            if (new Date(date.from).toDateString() === new Date(date.to).toDateString())
+                return "border-rounded-left-right";
+
+            const currentDate = new Date(this.year, this.month, dayNumber);
+            if (currentDate.toDateString() === new Date(date.from).toDateString()) {
+                return "border-rounded-left";
+            }
+            if (currentDate.toDateString() === new Date(date.to).toDateString()) {
+                return "border-rounded-right";
+            }
+            return "";
         },
         getDayName(dayNumber) {
             const dayIndex = new Date(this.year, this.month, dayNumber).getDay();
             return weekday[dayIndex];
-        }
+        },
     }
 };
 </script>

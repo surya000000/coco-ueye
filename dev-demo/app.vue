@@ -2,7 +2,8 @@
     <div class="container">
         <FullCalendar />
         <Card
-            v-for="(item, i) in lists()" :key="item.value"
+            v-for="item in lists()"
+            :key="item.value"
             :image-url="item.imageURL"
             :label="item.label"
             :desc="item.desc"
@@ -29,13 +30,13 @@ export default {
                 {
                     imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
                     label: "Saman",
-                    value: 20,
+                    value: 21,
                     desc: "<ul><li>15 task pending</li><li>25 task Remaining</ul></ul>",
                 }
-            ]
+            ];
         }
     }
-}
+};
 </script>
 <style lang="scss">
     @import "../src/styles/index.scss";

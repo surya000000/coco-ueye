@@ -23,7 +23,7 @@
 <script>
 import Calendar from "./calendar";
 import Card from "@/components/card";
-import months from '@/components/interface/months';
+import months from "@/components/interface/months";
 
 
 const items = [
@@ -32,8 +32,9 @@ const items = [
             value: 220,
             dateEvents: [
             {
-                date: { from: "2020/07/21", to: "2020/07/25" },
+                date: { from: "2020/08/21", to: "2020/08/25" },
                 events: [{
+                    id: 1,
                     name: "s",
                     label: "20%",
                     styles: {
@@ -49,8 +50,9 @@ const items = [
         desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
         dateEvents: [
             {
-            date: { from: "2020/07/11", to: "2020/07/13" },
+            date: { from: "2020/08/11", to: "2020/08/14" },
             events: [{
+                id: 2,
                 name: "Tasks",
                 icon: "⭐",
                 styles: {
@@ -60,6 +62,7 @@ const items = [
                 }
             },
             {
+                id: 3,
                 name: "Sales",
                 styles: {
                     backgroundColor: "green",
@@ -69,12 +72,13 @@ const items = [
             }]
         },
         {
-        date: { from: "2020/07/14", to: "2020/07/16" },
+        date: { from: "2020/08/15", to: "2020/08/16" },
         events: [
         {
+            id: 4,
             name: "Tasks",
             styles: {
-                backgroundColor: "red",
+                backgroundColor: "blue",
                 marginLeft: "-1px",
                 marginRight: "-1px"
             }
@@ -87,8 +91,9 @@ const items = [
         value: 10,
         desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
         dateEvents: [{
-            date: { from: "2020/07/3", to: "2020/07/10" },
+            date: { from: "2020/08/3", to: "2020/08/10" },
             events: [{
+                id: 5,
                 groupName: "Tasks",
                     styles: {
                         backgroundColor: "blue",
@@ -98,8 +103,9 @@ const items = [
                 }],
             },
             {
-            date: { from: "2020/07/12", to: "2020/07/18" },
+            date: { from: "2020/08/12", to: "2020/08/18" },
             events: [{
+                id: 6,
                 groupName: "Tasks",
                 styles: {
                     backgroundColor: "red",
