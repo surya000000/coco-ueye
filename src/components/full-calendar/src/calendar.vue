@@ -22,7 +22,7 @@
                 class="event"
                 v-for="event in getDateEvents(dayNumber)"
                 :key="event.label"
-                :style="event.styles"
+                :style="{ ...event.styles, width: `${event.numberOfDays * 100}%` }"
             >
                 {{ event.label }}
                 <span class="event-icon">
@@ -53,7 +53,8 @@ export default {
     name: "Calendar",
     data() {
         return {
-            activeDayNumber: null
+            activeDayNumber: null,
+            traversedHistory: [],
         };
     },
     props: {
@@ -94,23 +95,37 @@ export default {
         },
         getDateEvents(dayNumber) {
             const currentDate = new Date(this.year, this.month, dayNumber);
+            let numberOfDays = 1;
             const currentDateEvents = this.dateEvents.find(data => {
                 let fromDate = new Date();
                 let toDate = new Date();
                 if (isJSON(data.date)) {
                     fromDate = new Date(data.date.from);
                     toDate = new Date(data.date.to);
+                    numberOfDays = Math.floor((toDate - fromDate)/(3600000 * 24)) + 1;
                     return currentDate >= fromDate && currentDate <= toDate;
                 }
                 return new Date(data.date) === currentDate;
 
             }) || dateEventsInterface;
-            return currentDateEvents.events;
+            // filter out already traversed events using traversedHistory
+            const events = currentDateEvents.events
+                .filter(event => !this.traversedHistory.includes(event.id))
+                .map(event => ({ ...event, numberOfDays }));
+            this.insertEventsToTraversal(events);
+            return events;
+        },
+        insertEventsToTraversal(events) {
+            // create a history array with unique id of traversed events
+            this.traversedHistory = [...this.traversedHistory, ...events.map(event => event.id)];
+            this.traversedHistory = Array.from(
+                new Set([...this.traversedHistory, ...events.map(event => event.id)])
+            );
         },
         getDayName(dayNumber) {
             const dayIndex = new Date(this.year, this.month, dayNumber).getDay();
             return weekday[dayIndex];
-        }
+        },
     }
 };
 </script>
