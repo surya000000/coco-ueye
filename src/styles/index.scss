@@ -26,17 +26,50 @@ p {
     border: 1px solid #ddd;
     max-width: 50px;
     min-width: 50px;
+    display: flex;
+    flex-direction: column;
 }
 .event {
-    height: 20px;
+    height: 10px;
     background: white;
     margin-top: 10px;
-    border-radius: 20px;
-};
-.event-icon {
     position: relative;
-    top: -16px;
-    margin-left: 20px;
+};
+.border-rounded-left {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 85%;
+    align-self: flex-end;
+    .event-icon {
+        top: -9px;
+        left: 5px;
+        right: 0px;
+    }
+}
+.border-rounded-right {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 85%;
+    align-self: flex-start;
+    .event-icon {
+        top: -9px;
+        right: 0px;
+        left: 16px;
+    }
+}
+.border-rounded-left-right {
+    border-radius: 20px;
+    width: 85%;
+    align-self: center;
+    .event-icon {
+        top: -9px;
+        left: 14px;
+    }
+}
+.event-icon {
+    position: absolute;
+    top: -9px;
+    left: 18px;
 }
 .card-header {
     display: grid;

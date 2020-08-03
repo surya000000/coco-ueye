@@ -20,9 +20,10 @@
             </div>
             <div
                 class="event"
-                v-for="event in getDateEvents(dayNumber)"
+                :class="getBorderRadius(getDateEvents(dayNumber).date, dayNumber)"
+                v-for="event in getDateEvents(dayNumber).events"
                 :key="event.label"
-                :style="{ ...event.styles, width: `${event.numberOfDays * 100}%` }"
+                :style="event.styles"
             >
                 {{ event.label }}
                 <span class="event-icon">
@@ -54,7 +55,6 @@ export default {
     data() {
         return {
             activeDayNumber: null,
-            traversedHistory: [],
         };
     },
     props: {
@@ -95,32 +95,33 @@ export default {
         },
         getDateEvents(dayNumber) {
             const currentDate = new Date(this.year, this.month, dayNumber);
-            let numberOfDays = 1;
             const currentDateEvents = this.dateEvents.find(data => {
                 let fromDate = new Date();
                 let toDate = new Date();
                 if (isJSON(data.date)) {
                     fromDate = new Date(data.date.from);
                     toDate = new Date(data.date.to);
-                    numberOfDays = Math.floor((toDate - fromDate)/(3600000 * 24)) + 1;
                     return currentDate >= fromDate && currentDate <= toDate;
                 }
-                return new Date(data.date) === currentDate;
+                return new Date(data.date).toLocaleString() === currentDate.toLocaleString();
 
             }) || dateEventsInterface;
-            // filter out already traversed events using traversedHistory
-            const events = currentDateEvents.events
-                .filter(event => !this.traversedHistory.includes(event.id))
-                .map(event => ({ ...event, numberOfDays }));
-            this.insertEventsToTraversal(events);
-            return events;
+            return currentDateEvents;
         },
-        insertEventsToTraversal(events) {
-            // create a history array with unique id of traversed events
-            this.traversedHistory = [...this.traversedHistory, ...events.map(event => event.id)];
-            this.traversedHistory = Array.from(
-                new Set([...this.traversedHistory, ...events.map(event => event.id)])
-            );
+        getBorderRadius(date, dayNumber) {
+            if (!date.from) return "border-rounded-left-right";
+
+            if (new Date(date.from).toDateString() === new Date(date.to).toDateString())
+                return "border-rounded-left-right";
+
+            const currentDate = new Date(this.year, this.month, dayNumber);
+            if (currentDate.toDateString() === new Date(date.from).toDateString()) {
+                return "border-rounded-left";
+            }
+            if (currentDate.toDateString() === new Date(date.to).toDateString()) {
+                return "border-rounded-right";
+            }
+            return "";
         },
         getDayName(dayNumber) {
             const dayIndex = new Date(this.year, this.month, dayNumber).getDay();

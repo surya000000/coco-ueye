@@ -80,8 +80,7 @@ const items = [
             styles: {
                 backgroundColor: "blue",
                 marginLeft: "-1px",
-                marginRight: "-1px",
-                borderRadius: "5px"
+                marginRight: "-1px"
             }
         }]
     }]
