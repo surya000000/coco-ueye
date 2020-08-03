@@ -19,9 +19,8 @@
                 </p>
             </div>
             <div
-                class="event"
-                :class="getBorderRadius(getDateEvents(dayNumber).date, dayNumber)"
-                v-for="event in getDateEvents(dayNumber).events"
+                :class="[getBorderRadius(event, dayNumber), 'event']"
+                v-for="event in getDateEvents(dayNumber)"
                 :key="event.label"
                 :style="event.styles"
             >
@@ -95,31 +94,20 @@ export default {
         },
         getDateEvents(dayNumber) {
             const currentDate = new Date(this.year, this.month, dayNumber);
-            const currentDateEvents = this.dateEvents.find(data => {
-                let fromDate = new Date();
-                let toDate = new Date();
-                if (isJSON(data.date)) {
-                    fromDate = new Date(data.date.from);
-                    toDate = new Date(data.date.to);
-                    return currentDate >= fromDate && currentDate <= toDate;
-                }
-                return new Date(data.date).toLocaleString() === currentDate.toLocaleString();
-
-            }) || dateEventsInterface;
+            const currentDateEvents = this.dateEvents.filter(data => {
+                let fromDate = new Date(data.start);
+                let toDate = new Date(data.end);
+                return currentDate >= fromDate && currentDate <= toDate;
+            }) || [];
             return currentDateEvents;
         },
-        getBorderRadius(date, dayNumber) {
-            if (!date.from) return "border-rounded-left-right";
-
-            if (new Date(date.from).toDateString() === new Date(date.to).toDateString())
-                return "border-rounded-left-right";
-
+        getBorderRadius(event, dayNumber) {
             const currentDate = new Date(this.year, this.month, dayNumber);
-            if (currentDate.toDateString() === new Date(date.from).toDateString()) {
+
+            if (currentDate.getTime() === new Date(event.start).getTime()) {
                 return "border-rounded-left";
-            }
-            if (currentDate.toDateString() === new Date(date.to).toDateString()) {
-                return "border-rounded-right";
+            } else if (currentDate.getTime() === new Date(event.end).getTime()) {
+                return 'border-rounded-right';
             }
             return "";
         },
