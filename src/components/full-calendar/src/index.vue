@@ -49,7 +49,6 @@ const items = [
             end: "2020/08/20",
             id: 2,
             name: "Tasks",
-            icon: "⭐",
             styles: {
                     backgroundColor: "red",
                     marginLeft: "-1px",
@@ -79,7 +78,6 @@ const items = [
             end: "2020/08/13",
             id: 2,
             name: "Tasks",
-            icon: "⭐",
             styles: {
                     backgroundColor: "red",
                     marginLeft: "-1px",
@@ -109,7 +107,6 @@ const items = [
         end: "2020/08/14",
         id: 2,
         name: "Tasks",
-        icon: "⭐",
         styles: {
                 backgroundColor: "red",
                 marginLeft: "-1px",
