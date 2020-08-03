@@ -63,7 +63,7 @@
     "test": "yarn run lint && karma start test/unit/karma.conf.js --single-run",
     "build:prod": "webpack --config build/webpack.prod.config.js",
     "storybook": "start-storybook",
-    "build:scss": "npx node-sass -w src/styles/index.scss dist/cocoui.css --output-style compressed"
+    "build:scss": "node-sass src/styles/index.scss dist/cocoui.css --output-style compressed"
   },
   "author": "Surya Prasad Siwakoti",
   "license": "ISC"
