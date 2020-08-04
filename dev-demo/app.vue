@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <FullCalendar />
+        <FullCalendar>
+            <template v-slot:header> This is header</template>
+        </FullCalendar>
         <Card
             v-for="item in lists()"
             :key="item.value"

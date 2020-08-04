@@ -13,7 +13,6 @@ export default {
     props: {
         width: {
             type: String,
-            required: true,
         },
         imageUrl: {
             type: String,

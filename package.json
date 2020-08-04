@@ -2,7 +2,7 @@
   "name": "coco-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/cocoui.min.js",
   "peerDependencies": {
     "vue": "^2.5.2"
   },
