@@ -18,7 +18,8 @@ Scalable independent UI Components
 Using yarn
 
 ```sh
-yarn install cocoui --save
+yarn add coco-uye --save
+import { Card } from 'coco-ueye';
 ```
 
 ### Development
