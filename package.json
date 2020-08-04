@@ -1,6 +1,6 @@
 {
-  "name": "coco-ui",
-  "version": "1.0.0",
+  "name": "coco-ueye",
+  "version": "1.1.1",
   "description": "",
   "main": "dist/cocoui.min.js",
   "peerDependencies": {
@@ -20,6 +20,10 @@
     "node-sass": "^4.14.1",
     "vue": "^2.5.2"
   },
+  "files": [
+     "dist",
+     "src"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
