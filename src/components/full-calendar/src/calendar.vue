@@ -10,7 +10,7 @@
                 class="header"
                 :class="[activeDayNumber === dayNumber  ? 'calendar-active-header' : '', defaultHolidayDays.includes(getDayName(dayNumber)) ? 'calendar-holiday-header' : '']"
                 v-if="showHeader"
-                @click="(e) => onheaderClick(dayNumber, e)"
+                @click="(e) => headerClick(dayNumber, e)"
             >
                 <p>
                     {{ dayNumber }}
@@ -97,10 +97,10 @@ export default {
         },
     },
     mounted() {
-      this.onheaderClick(this.activeDayNumber)
+      this.headerClick(this.activeDayNumber)
     },
     methods: {
-        onheaderClick(dayNumber, e) {
+        headerClick(dayNumber, e) {
             this.activeDayNumber = dayNumber;
             this.$emit("on-header-click", this.activeDayNumber);
         },

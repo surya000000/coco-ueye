@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="card-image-text-wrapper">
               <img class="wrapper-image" :src="imageUrl" v-if="imageUrl"/>
-              <p class="wrapper-text" v-else>SK</p>
+              <p class="wrapper-text" v-else>{{ label.charAt(0) }}</p>
             </div>
             <a href="#">{{ label }}</a>
         </div>
