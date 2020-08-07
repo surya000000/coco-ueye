@@ -21,11 +21,10 @@
     border: none;
     border-right: 1px solid #ddd;
     .header {
-        height: 40px;
+        height: 50px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding-bottom: 4px;
     }
     .header :first-child {
         margin-bottom: 4px;
@@ -36,8 +35,9 @@
         color: $light-gray;
     }
     .calendar-holiday-header {
-        color: $red;
-        background-color: $lightest-gray;
+        p {
+          color: $red !important;
+        }
     }
     .calendar-active-header {
       background: $black !important;
@@ -53,22 +53,22 @@
     border-bottom: 1px solid #ddd;
     width: 29.3px;
     @media(min-width: 80em) {
-      width: 33.4px;
+      width: 33.5px;
     }
     @media(min-width: 90em) {
-      width: 36.9px;
+      width: 37px;
     }
     @media (min-width: 100em) {
-      width: 41px;
+      width: 41.1px;
     }
     @media(min-width: 110em) {
       width: 46.2px;
     }
     @media(min-width: 120em) {
-      width: 49.5px;
+      width: 49.4px;
     }
     @media(min-width: 130em) {
-      width: 54px;
+      width: 55.6px;
     }
 }
 
@@ -81,7 +81,7 @@
 }
 
 .calendar-holiday-wrapper {
-    background: $lighten-trans-red
+    background: $trans-red
 }
 
 .event {
@@ -93,11 +93,13 @@
 .border-rounded-left {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    margin-left: 9px !important;
 }
 
 .border-rounded-right {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    margin-right: 9px !important;
 }
 
 .event-icon {

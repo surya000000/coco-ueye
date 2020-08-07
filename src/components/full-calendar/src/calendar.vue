@@ -4,11 +4,11 @@
             @click="e => $emit('on-column-click', { dayNumber, index }, e)"
             v-for="(dayNumber, index) in totalDays"
             :key="dayNumber"
-            :class="[`full-calendar-day-number day-${dayNumber}`]"
+            :class="[`full-calendar-day-number day-${dayNumber}`, defaultHolidayDays.includes(getDayName(dayNumber)) ? 'calendar-holiday-wrapper' : '']"
         >
             <div
                 class="header"
-                :class="[activeDayNumber === dayNumber  ? 'calendar-active-header' : '']"
+                :class="[activeDayNumber === dayNumber  ? 'calendar-active-header' : '', defaultHolidayDays.includes(getDayName(dayNumber)) ? 'calendar-holiday-header' : '']"
                 v-if="showHeader"
                 @click="(e) => onheaderClick(dayNumber, e)"
             >
@@ -77,6 +77,10 @@ export default {
         eventStyles: {
           type: Object,
           default: () => ({})
+        },
+        defaultHolidayDays: {
+          type: Array,
+          default: () => ['Sat']
         }
     },
     computed: {
@@ -110,10 +114,6 @@ export default {
             const previousEvent = this.getDateEvents(dayNumber - 1);
             let returnClass = ''
             const currentDate = new Date(this.year, this.month, dayNumber);
-            // debugger
-            // if (currentDate.getTime() === new Date(event.date).getTime()) {
-            //     return "border-rounded-left";
-            // } else
             if (currentDate.toDateString() === new Date(event.date).toDateString() && nextEvent.length === 0) {
                 returnClass =  `${returnClass} border-rounded-right`;
             }
