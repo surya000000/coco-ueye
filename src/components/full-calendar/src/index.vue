@@ -1,22 +1,27 @@
 <template>
     <div>
-        <p>{{ months[month]  }} {{ year }}</p>
         <div class="card-date-grid">
             <div>
                 <slot name="header" />
             </div>
-            <Calendar
-                @on-header-click="headerClick"
-                @on-column-click="(param, e) => columnClick({...param, id: item.value }, e)"
-                :year="year"
-                :month="month"
-            />
+            <div class="">
+              <div class="calender-month-year-wrapper">
+                <p >{{ months[month]  }} {{ year }}</p>
+              </div>
+              <Calendar
+                  @on-header-click="headerClick"
+                  @on-column-click="(param, e) => columnClick({...param}, e)"
+                  :year="year"
+                  :month="month"
+              />
+            </div>
         </div>
         <div v-for="(item, i) in lists" :key="item.value" class="card-date-grid">
             <Card
                 :image-url="item.imageURL"
                 :label="item.label"
                 :desc="item.desc"
+                :footer-content="item.footerContent"
                 width="inherit"
             >
             </Card>
@@ -24,6 +29,7 @@
                 @on-header-click="headerClick"
                 @on-column-click="(param, e) => columnClick({...param, id: item.value }, e)"
                 :date-events="item.dateEvents"
+                :event-styles="item.eventStyles"
                 :show-header="false"
                 :year="year"
                 :month="month"
@@ -38,93 +44,701 @@ import months from "@/components/interface/months";
 
 
 const items = [
-    {
-        imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
-        label: "Sudhir Sapkota",
-        value: 21,
-        desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
-        dateEvents: [
-            {
-            start: "2020/08/1",
-            end: "2020/08/20",
-            id: 2,
-            name: "Tasks",
-            styles: {
-                    backgroundColor: "red",
-                    marginLeft: "-1px",
-                    marginRight: "-1px"
-            },
-        },
-            {
-                start: "2020/08/1",
-                end: "2020/08/5",
-                id: 3,
-                name: "Sales",
-                styles: {
-                    backgroundColor: "green",
-                    marginLeft: "-1px",
-                    marginRight: "-1px"
-                }
-            }]
-},
-    {
-        imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
-        label: "Sudhir Sapkota",
-        value: 22,
-        desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
-        dateEvents: [
-            {
-            start: "2020/08/7",
-            end: "2020/08/13",
-            id: 2,
-            name: "Tasks",
-            styles: {
-                    backgroundColor: "red",
-                    marginLeft: "-1px",
-                    marginRight: "-1px"
-            },
-        },
-            {
-                start: "2020/08/9",
-                end: "2020/08/10",
-                id: 3,
-                name: "Sales",
-                styles: {
-                    backgroundColor: "green",
-                    marginLeft: "-1px",
-                    marginRight: "-1px"
-                }
-            }]
-},
-{
-    imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
-    label: "Sudhir Sapkota",
-    value: 20,
-    desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
-    dateEvents: [
+  {
+    "value": "Campaign Tasks",
+    "label": "Campaign Tasks",
+    "footerContent": {
+      "leftSpan": [
         {
-        start: "2020/08/12",
-        end: "2020/08/14",
-        id: 2,
-        name: "Tasks",
-        styles: {
-                backgroundColor: "red",
-                marginLeft: "-1px",
-                marginRight: "-1px"
+          "title": "FOS",
+          "value": 1
         },
+        {
+          "title": "BITS",
+          "value": 1
+        }
+      ],
+      "rightSpan": [
+        {
+          "title": "RECORDS",
+          "value": '2000/4000'
+        }
+      ]
     },
+    "eventStyles": { backgroundColor: 'red', marginRight: '-1px', marginLeft: '-1px' },
+    "dateEvents": [
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-01"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-02"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-03"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-04"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-05"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-08"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-09"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-13"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-14"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-15"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-18"
+      }
+    ]
+  },
+  {
+    "value": "Campaign Tasks",
+    "label": "Campaign Tasks",
+    "footerContent": {
+      "leftSpan": [
         {
-            start: "2020/08/15",
-            end: "2020/08/20",
-            id: 3,
-            name: "Sales",
-            styles: {
-                backgroundColor: "green",
-                marginLeft: "-1px",
-                marginRight: "-1px"
-            }
-        }]
-}];
+          "title": "FOS",
+          "value": 1
+        },
+        {
+          "title": "BITS",
+          "value": 1
+        }
+      ],
+      "rightSpan": [
+        {
+          "title": "RECORDS",
+          "value": '2000/4000'
+        }
+      ]
+    },
+    "eventStyles": { backgroundColor: 'purple', marginRight: '-1px', marginLeft: '-1px' },
+    "dateEvents": [
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-01"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-02"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-03"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-04"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-05"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-06"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-10"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-11"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-12"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-13"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-14"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-15"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-18"
+      }
+    ]
+  },
+  {
+    "value": "Campaign Tasks",
+    "label": "Campaign Tasks",
+    "footerContent": {
+      "leftSpan": [
+        {
+          "title": "FOS",
+          "value": 1
+        },
+        {
+          "title": "BITS",
+          "value": 1
+        }
+      ],
+      "rightSpan": [
+        {
+          "title": "RECORDS",
+          "value": '2000/4000'
+        }
+      ]
+    },
+    "eventStyles": { backgroundColor: 'yellow', marginRight: '-1px', marginLeft: '-1px' },
+    "dateEvents": [
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-02"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-03"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-06"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-07"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-08"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-09"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-10"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-11"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-12"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-13"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-14"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-15"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-18"
+      }
+    ]
+  },
+  {
+    "value": "Campaign Tasks",
+    "label": "Campaign Tasks",
+    "footerContent": {
+      "leftSpan": [
+        {
+          "title": "FOS",
+          "value": 1
+        },
+        {
+          "title": "BITS",
+          "value": 1
+        }
+      ],
+      "rightSpan": [
+        {
+          "title": "RECORDS",
+          "value": '2000/4000'
+        }
+      ]
+    },
+    "eventStyles": { backgroundColor: 'orange', marginRight: '-1px', marginLeft: '-1px' },
+    "dateEvents": [
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-01"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-02"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-03"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-04"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-08"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-09"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-10"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-11"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-12"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-13"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-14"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-15"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-18"
+      }
+    ]
+  },
+  {
+    "value": "Campaign Tasks",
+    "label": "Campaign Tasks",
+    "footerContent": {
+      "leftSpan": [
+        {
+          "title": "FOS",
+          "value": 1
+        },
+        {
+          "title": "BITS",
+          "value": 1
+        }
+      ],
+      "rightSpan": [
+        {
+          "title": "RECORDS",
+          "value": '2000/4000'
+        }
+      ]
+    },
+    "eventStyles": { backgroundColor: 'green', marginRight: '-1px', marginLeft: '-1px' },
+    "dateEvents": [
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-01"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-02"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-03"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-04"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-05"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-06"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-07"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-08"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-09"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-10"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-11"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-12"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-18"
+      }
+    ]
+  },
+  {
+    "value": "Sale Tasks",
+    "label": "Sale Tasks",
+    "eventStyles": { backgroundColor: 'blue', marginRight: '-1px', marginLeft: '-1px' },
+    "footerContent": {
+      "leftSpan": [
+        {
+          "title": "FOS",
+          "value": 1
+        },
+        {
+          "title": "BITS",
+          "value": 1
+        }
+      ],
+      "rightSpan": [
+        {
+          "title": "RECORDS",
+          "value": '9000/10000'
+        }
+      ]
+    },
+    "dateEvents": [
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-01"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-02"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 9,
+        "task_type": "Campaign Tasks",
+        "date": "2020-08-03"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 1,
+        "task_type": "Sale Tasks",
+        "date": "2020-08-25"
+      },
+      {
+        "id": null,
+        "fos_count": 1,
+        "bit_count": 1,
+        "form_count": 1,
+        "task_type": "Sale Tasks",
+        "date": "2020-08-29"
+      }
+    ]
+  }
+]
 
 
 export default {
@@ -154,15 +768,15 @@ export default {
             if (!e.target.className.match(/full-calendar-day-number|event/)) {
                 return false;
             }
-            alert("Column clicked day: " + dayNumber + " clicked column index" +index +" Fos id "+ id);
+            // alert("Column clicked day: " + dayNumber + " clicked column index" +index +" Fos id "+ id);
         },
         headerClick(dayNumber) {
-            alert("Column Header clicked day: " + dayNumber);
+            // alert("Column Header clicked day: " + dayNumber);
             document.querySelectorAll(".full-calendar-day-number").forEach(el => {
-                el.classList.remove("active");
+                el.classList.remove("calendar-active-wrapper");
             });
             document.querySelectorAll(`.day-${dayNumber}`).forEach(el => {
-                el.classList.add("active");
+                el.classList.add("calendar-active-wrapper");
             });
         }
     }

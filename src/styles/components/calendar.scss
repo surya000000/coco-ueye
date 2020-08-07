@@ -1,0 +1,118 @@
+.calender-month-year-wrapper {
+    background: #f9f9fb;
+    p {
+      padding-bottom: 5px;
+      text-align: start;
+      color: $light-gray;
+    }
+}
+
+.card-calendar-grid {
+    display: grid;
+    grid-template-columns: 100px 20px auto;
+}
+
+.full-calendar {
+    display: grid;
+    grid-template-columns: 200px auto;
+}
+.with-header {
+  .full-calendar-day-number {
+    border: none;
+    border-right: 1px solid #ddd;
+    .header {
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .header :first-child {
+        margin-bottom: 4px;
+        font-weight: 500;
+        color: $mid-gray;
+    }
+    .header :last-child {
+        color: $light-gray;
+    }
+    .calendar-holiday-header {
+        p {
+          color: $red !important;
+        }
+    }
+    .calendar-active-header {
+      background: $black !important;
+      p {
+        color: $white !important;
+      }
+    }
+  }
+}
+
+.full-calendar-day-number {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    width: 29.3px;
+    @media(min-width: 80em) {
+      width: 33.5px;
+    }
+    @media(min-width: 90em) {
+      width: 37px;
+    }
+    @media (min-width: 100em) {
+      width: 41.1px;
+    }
+    @media(min-width: 110em) {
+      width: 46.2px;
+    }
+    @media(min-width: 120em) {
+      width: 49.4px;
+    }
+    @media(min-width: 130em) {
+      width: 55.6px;
+    }
+}
+
+.full-calendar-day-number :first-child {
+  border-top: none
+}
+
+.calendar-active-wrapper {
+    background: $trans-yellow;
+}
+
+.calendar-holiday-wrapper {
+    background: $trans-red
+}
+
+.event {
+    height: 5px;
+    background: white;
+    margin-top: 6px;
+};
+
+.border-rounded-left {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left: 9px !important;
+}
+
+.border-rounded-right {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-right: 9px !important;
+}
+
+.event-icon {
+    position: relative;
+    top: -16px;
+    margin-left: 20px;
+}
+
+.card-header {
+    display: grid;
+};
+
+.card-date-grid {
+    display: grid;
+    grid-template-columns: 18% auto;
+}

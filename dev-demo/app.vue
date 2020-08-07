@@ -9,6 +9,7 @@
             :image-url="item.imageURL"
             :label="item.label"
             :desc="item.desc"
+            :footer-content="item.footerContent"
         />
     </div>
 </template>
@@ -23,18 +24,28 @@ export default {
     methods: {
         lists() {
             return [
-                {
-                    imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
-                    label: "Sudhir Sapkota",
-                    value: 20,
-                    desc: "<ul><li>15 task pending</li><li>25 task Remaining</li></ul>",
-                },
-                {
-                    imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Breathe_%28Web_series%29_poster.jpg/220px-Breathe_%28Web_series%29_poster.jpg",
-                    label: "Saman",
-                    value: 21,
-                    desc: "<ul><li>15 task pending</li><li>25 task Remaining</ul></ul>",
+              {
+                "value": "Sale Tasks",
+                "label": "Sale Tasks",
+                "footerContent": {
+                  "leftSpan": [
+                    {
+                      "title": "FOS",
+                      "value": 1
+                    },
+                    {
+                      "title": "BITs",
+                      "value": 1
+                    }
+                  ],
+                  "rightSpan": [
+                    {
+                      "title": "RECORDS",
+                      "value": 2
+                    }
+                  ]
                 }
+              }
             ];
         }
     }

@@ -1,15 +1,16 @@
 <template>
-    <div :class="['coco-ui-grid', showHeader ? 'with-header' : '']">
+    <div :class="['coco-ui-grid', showHeader ? 'with-header' : 'without-header']">
         <div
             @click="e => $emit('on-column-click', { dayNumber, index }, e)"
             v-for="(dayNumber, index) in totalDays"
             :key="dayNumber"
-            :class="[activeDayNumber === dayNumber  ? 'active' : '', `full-calendar-day-number day-${dayNumber}`]"
+            :class="[`full-calendar-day-number day-${dayNumber}`, defaultHolidayDays.includes(getDayName(dayNumber)) ? 'calendar-holiday-wrapper' : '']"
         >
             <div
                 class="header"
+                :class="[activeDayNumber === dayNumber  ? 'calendar-active-header' : '', defaultHolidayDays.includes(getDayName(dayNumber)) ? 'calendar-holiday-header' : '']"
                 v-if="showHeader"
-                @click="(e) => onheaderClick(dayNumber, e)"
+                @click="(e) => headerClick(dayNumber, e)"
             >
                 <p>
                     {{ dayNumber }}
@@ -22,7 +23,7 @@
                 :class="[getBorderRadius(event, dayNumber), 'event']"
                 v-for="event in getDateEvents(dayNumber)"
                 :key="event.label"
-                :style="event.styles"
+                :style="eventStyles"
             >
                 {{ event.label }}
                 <span class="event-icon">
@@ -53,7 +54,7 @@ export default {
     name: "Calendar",
     data() {
         return {
-            activeDayNumber: null,
+            activeDayNumber: new Date().getDay(),
         };
     },
     props: {
@@ -72,6 +73,14 @@ export default {
         dateEvents: {
             type: Array,
             default: () => [],
+        },
+        eventStyles: {
+          type: Object,
+          default: () => ({})
+        },
+        defaultHolidayDays: {
+          type: Array,
+          default: () => ['Sat']
         }
     },
     computed: {
@@ -87,29 +96,31 @@ export default {
             return new Date(this.year, this.month + 1, 0).getDate();
         },
     },
+    mounted() {
+      this.headerClick(this.activeDayNumber)
+    },
     methods: {
-        onheaderClick(dayNumber, e) {
+        headerClick(dayNumber, e) {
             this.activeDayNumber = dayNumber;
             this.$emit("on-header-click", this.activeDayNumber);
         },
         getDateEvents(dayNumber) {
             const currentDate = new Date(this.year, this.month, dayNumber);
-            const currentDateEvents = this.dateEvents.filter(data => {
-                let fromDate = new Date(data.start);
-                let toDate = new Date(data.end);
-                return currentDate >= fromDate && currentDate <= toDate;
-            }) || [];
+            const currentDateEvents = this.dateEvents.filter(data => currentDate.toDateString() === (new Date(data.date)).toDateString()) || [];
             return currentDateEvents;
         },
         getBorderRadius(event, dayNumber) {
+            const nextEvent = this.getDateEvents(dayNumber + 1);
+            const previousEvent = this.getDateEvents(dayNumber - 1);
+            let returnClass = ''
             const currentDate = new Date(this.year, this.month, dayNumber);
-
-            if (currentDate.getTime() === new Date(event.start).getTime()) {
-                return "border-rounded-left";
-            } else if (currentDate.getTime() === new Date(event.end).getTime()) {
-                return 'border-rounded-right';
+            if (currentDate.toDateString() === new Date(event.date).toDateString() && nextEvent.length === 0) {
+                returnClass =  `${returnClass} border-rounded-right`;
             }
-            return "";
+            if (currentDate.toDateString() === new Date(event.date).toDateString() && previousEvent.length === 0) {
+                returnClass = `${returnClass} border-rounded-left`;
+            }
+            return returnClass;
         },
         getDayName(dayNumber) {
             const dayIndex = new Date(this.year, this.month, dayNumber).getDay();

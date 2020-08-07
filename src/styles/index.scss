@@ -1,54 +1,5 @@
 @import "./components/input.scss";
 @import "./components/card.scss";
-
-img {
-    height: 60px;
-    width: 63px;
-    border-radius: 32px;
-}
-
-.card-calendar-grid {
-    display: grid;
-    grid-template-columns: 100px 20px auto;
-}
-
-.active {
-    background: yellow;
-}
-.full-calendar {
-    display: grid;
-    grid-template-columns: 200px auto;
-}
-p {
-    text-align: center;
-}
-.full-calendar-day-number {
-    border: 1px solid #ddd;
-    max-width: 50px;
-    min-width: 50px;
-}
-.event {
-    height: 11px;
-    background: white;
-    margin-top: 10px;
-};
-.border-rounded-left {
-    border-radius: 20px 0px 0px 24px;
-}
-.border-rounded-right {
-    border-radius: 0px 20px 24px 0px
-}
-.event-icon {
-    position: relative;
-    top: -16px;
-    margin-left: 20px;
-}
-.card-header {
-    display: grid;
-    grid-template-columns: auto auto
-};
-
-.card-date-grid {
-    display: grid;
-    grid-template-columns: 16% auto;
-}
+@import "./components/calendar.scss";
+@import "./variables/index.scss";
+@import "./components/common.scss";
