@@ -1,16 +1,20 @@
 <template>
     <div>
-        <p>{{ months[month]  }} {{ year }}</p>
         <div class="card-date-grid">
             <div>
                 <slot name="header" />
             </div>
-            <Calendar
-                @on-header-click="headerClick"
-                @on-column-click="(param, e) => columnClick({...param, id: item.value }, e)"
-                :year="year"
-                :month="month"
-            />
+            <div class="">
+              <div class="calender-month-year-wrapper">
+                <p >{{ months[month]  }} {{ year }}</p>
+              </div>
+              <Calendar
+                  @on-header-click="headerClick"
+                  @on-column-click="(param, e) => columnClick({...param}, e)"
+                  :year="year"
+                  :month="month"
+              />
+            </div>
         </div>
         <div v-for="(item, i) in lists" :key="item.value" class="card-date-grid">
             <Card
@@ -50,14 +54,14 @@ const items = [
           "value": 1
         },
         {
-          "title": "BITs",
+          "title": "BITS",
           "value": 1
         }
       ],
       "rightSpan": [
         {
           "title": "RECORDS",
-          "value": 9
+          "value": '2000/4000'
         }
       ]
     },
@@ -203,14 +207,14 @@ const items = [
           "value": 1
         },
         {
-          "title": "BITs",
+          "title": "BITS",
           "value": 1
         }
       ],
       "rightSpan": [
         {
           "title": "RECORDS",
-          "value": 2
+          "value": '9000/10000'
         }
       ]
     },
@@ -263,15 +267,15 @@ export default {
             if (!e.target.className.match(/full-calendar-day-number|event/)) {
                 return false;
             }
-            alert("Column clicked day: " + dayNumber + " clicked column index" +index +" Fos id "+ id);
+            // alert("Column clicked day: " + dayNumber + " clicked column index" +index +" Fos id "+ id);
         },
         headerClick(dayNumber) {
-            alert("Column Header clicked day: " + dayNumber);
+            // alert("Column Header clicked day: " + dayNumber);
             document.querySelectorAll(".full-calendar-day-number").forEach(el => {
-                el.classList.remove("active");
+                el.classList.remove("calendar-active-wrapper");
             });
             document.querySelectorAll(`.day-${dayNumber}`).forEach(el => {
-                el.classList.add("active");
+                el.classList.add("calendar-active-wrapper");
             });
         }
     }

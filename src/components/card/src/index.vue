@@ -1,18 +1,21 @@
 <template>
     <div class="card" :style="{ width }">
         <div class="card-header">
-            <img :src="imageUrl" />
+            <div class="card-image-text-wrapper">
+              <img class="wrapper-image" :src="imageUrl" v-if="imageUrl"/>
+              <p class="wrapper-text" v-else>SK</p>
+            </div>
             <a href="#">{{ label }}</a>
         </div>
         <div class="card-footer">
           <div class="footer-span-left">
-            <div class="" v-for="(item, i) in footerContent.leftSpan" :key="item.title">
+            <div class="footer-span-content-wrapper" v-for="(item, i) in footerContent.leftSpan" :key="item.title">
               <p class="footer-item-title">{{ item.title }}</p>
               <p class="footer-item-value"> {{ item.value }}</p>
             </div>
           </div>
           <div class="footer-span-right">
-            <div  v-for="(item, i) in footerContent.rightSpan" :key="item.title">
+            <div  class="footer-span-content-wrapper" v-for="(item, i) in footerContent.rightSpan" :key="item.title">
               <p class="footer-item-title">{{ item.title }}</p>
               <p class="footer-item-value"> {{ item.value }}</p>
             </div>

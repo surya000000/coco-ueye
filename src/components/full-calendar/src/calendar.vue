@@ -1,13 +1,14 @@
 <template>
-    <div :class="['coco-ui-grid', showHeader ? 'with-header' : '']">
+    <div :class="['coco-ui-grid', showHeader ? 'with-header' : 'without-header']">
         <div
             @click="e => $emit('on-column-click', { dayNumber, index }, e)"
             v-for="(dayNumber, index) in totalDays"
             :key="dayNumber"
-            :class="[activeDayNumber === dayNumber  ? 'active' : '', `full-calendar-day-number day-${dayNumber}`]"
+            :class="[`full-calendar-day-number day-${dayNumber}`]"
         >
             <div
                 class="header"
+                :class="[activeDayNumber === dayNumber  ? 'calendar-active-header' : '']"
                 v-if="showHeader"
                 @click="(e) => onheaderClick(dayNumber, e)"
             >
@@ -53,7 +54,7 @@ export default {
     name: "Calendar",
     data() {
         return {
-            activeDayNumber: null,
+            activeDayNumber: new Date().getDay(),
         };
     },
     props: {
@@ -90,6 +91,9 @@ export default {
             // geMonth returns from 0 index
             return new Date(this.year, this.month + 1, 0).getDate();
         },
+    },
+    mounted() {
+      this.onheaderClick(this.activeDayNumber)
     },
     methods: {
         onheaderClick(dayNumber, e) {
