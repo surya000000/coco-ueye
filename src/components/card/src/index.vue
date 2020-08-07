@@ -4,6 +4,20 @@
             <img :src="imageUrl" />
             <a href="#">{{ label }}</a>
         </div>
+        <div class="card-footer">
+          <div class="footer-span-left">
+            <div class="" v-for="(item, i) in footerContent.leftSpan" :key="item.title">
+              <p class="footer-item-title">{{ item.title }}</p>
+              <p class="footer-item-value"> {{ item.value }}</p>
+            </div>
+          </div>
+          <div class="footer-span-right">
+            <div  v-for="(item, i) in footerContent.rightSpan" :key="item.title">
+              <p class="footer-item-title">{{ item.title }}</p>
+              <p class="footer-item-value"> {{ item.value }}</p>
+            </div>
+          </div>
+        </div>
         <div v-html="desc" />
     </div>
 </template>
@@ -25,6 +39,10 @@ export default {
         desc: {
             type: String,
             default: "",
+        },
+        footerContent: {
+            type: Object,
+            default: () => ({})
         }
     }
 };

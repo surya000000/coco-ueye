@@ -22,7 +22,7 @@
                 :class="[getBorderRadius(event, dayNumber), 'event']"
                 v-for="event in getDateEvents(dayNumber)"
                 :key="event.label"
-                :style="event.styles"
+                :style="eventStyles"
             >
                 {{ event.label }}
                 <span class="event-icon">
@@ -72,6 +72,10 @@ export default {
         dateEvents: {
             type: Array,
             default: () => [],
+        },
+        eventStyles: {
+          type: Object,
+          default: () => ({})
         }
     },
     computed: {
@@ -94,22 +98,25 @@ export default {
         },
         getDateEvents(dayNumber) {
             const currentDate = new Date(this.year, this.month, dayNumber);
-            const currentDateEvents = this.dateEvents.filter(data => {
-                let fromDate = new Date(data.start);
-                let toDate = new Date(data.end);
-                return currentDate >= fromDate && currentDate <= toDate;
-            }) || [];
+            const currentDateEvents = this.dateEvents.filter(data => currentDate.toDateString() === (new Date(data.date)).toDateString()) || [];
             return currentDateEvents;
         },
         getBorderRadius(event, dayNumber) {
+            const nextEvent = this.getDateEvents(dayNumber + 1);
+            const previousEvent = this.getDateEvents(dayNumber - 1);
+            let returnClass = ''
             const currentDate = new Date(this.year, this.month, dayNumber);
-
-            if (currentDate.getTime() === new Date(event.start).getTime()) {
-                return "border-rounded-left";
-            } else if (currentDate.getTime() === new Date(event.end).getTime()) {
-                return 'border-rounded-right';
+            // debugger
+            // if (currentDate.getTime() === new Date(event.date).getTime()) {
+            //     return "border-rounded-left";
+            // } else
+            if (currentDate.toDateString() === new Date(event.date).toDateString() && nextEvent.length === 0) {
+                returnClass =  `${returnClass} border-rounded-right`;
             }
-            return "";
+            if (currentDate.toDateString() === new Date(event.date).toDateString() && previousEvent.length === 0) {
+                returnClass = `${returnClass} border-rounded-left`;
+            }
+            return returnClass;
         },
         getDayName(dayNumber) {
             const dayIndex = new Date(this.year, this.month, dayNumber).getDay();
