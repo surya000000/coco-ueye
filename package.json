@@ -38,7 +38,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
-    "karma": "^5.1.0",
+    "karma": "^6.3.14",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.2",
     "karma-mocha": "^2.0.1",
